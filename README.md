@@ -80,7 +80,7 @@ augmentation/2_1.png
 
 Augmented image:  
 <img src="examples/0_568.jpg" width="300">  
-One of corresponding masks:
+One of corresponding masks:  
 <img src="examples/4_568.png" width="300">
   
 P.S. The current script is relatively slow. It's mainly due to the massive transformation applied in augmentor, but the implementation of blending and brightness adjustment is not fast as well.
