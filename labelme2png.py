@@ -10,17 +10,30 @@ import math
 # save mask in "8_bit_binary" or "1_bit_binary", 
 # 8-bit mode has better compatibility in general
 mode = "8_bit_binary"
-in_dir = "data\\raw"
-out_dir = "data\\mask"
+in_dir = "image"
+out_dir = "mask"
+mask_list = {"rune_success", "rune_shoot", "rune_target", "rune_center", "rune_blank"}  # set of label names
 
+# create output directories
+if not os.path.exists(out_dir):
+    os.makedirs(out_dir)
+
+for name in mask_list:
+    new_dir = os.path.join(out_dir, name)
+    if not os.path.exists(new_dir):
+        os.makedirs(new_dir)
+
+# set image mode
 if mode == "1_bit_binary":
     pil_mode = "1"
     pil_fill = 1
 elif mode == "8_bit_binary":
     pil_mode = "L"
     pil_fill = 255
+else:
+    raise Exception("Illegal image mode!")
 
-
+# begin mask generation
 for file in glob.glob(os.path.join(in_dir, "*.png")):
     im = Image.open(file)
     width, height = im.size
@@ -39,7 +52,7 @@ for file in glob.glob(os.path.join(in_dir, "*.png")):
         points = shape["points"]
         shape_type = shape["shape_type"]
         
-        # create new mask if the class appear for first time
+        # create new mask if the class appear for the first time
         if label not in masks:
             masks[label] = Image.new(pil_mode, (width, height))
         draw = ImageDraw.Draw(masks[label])
@@ -55,7 +68,14 @@ for file in glob.glob(os.path.join(in_dir, "*.png")):
             draw.ellipse((center[0] - radius, center[1] - radius,
                           center[0] + radius, center[1] + radius), fill=pil_fill)
 
+    # create empty mask for absent label
+    existed_mask = set(masks.keys())
+    absent_mask = mask_list.difference(existed_mask)
+    for absent in absent_mask:
+        masks[absent] = Image.new(pil_mode, (width, height))
+
+    # save all masks to file
     for label, mask in masks.items():
         mask_name = "_".join([general_name, label])
-        mask_path = os.path.join(out_dir, mask_name)
+        mask_path = os.path.join(out_dir, label, mask_name)
         mask.save(mask_path + ".png", "PNG")
