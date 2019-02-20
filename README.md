@@ -50,7 +50,7 @@ The script runs in following steps:
 
 1. Load image and masks.
 2. Load background images.
-3. Define [augmentor](https://augmentor.readthedocs.io/en/master/)
+3. Define [augmentor](https://augmentor.readthedocs.io/en/master/). The current one includes rotation, shear, perspective transformation, saturation, brightness, random removal, flip, zoom, and distortion.
 4. Sample a batch with augmentor.
 5. Choose a random background and lower its brightness (since my model will be used in low-light condition).
 6. Paste augmentated sample image to background with alpha blending. If the sample image has alpha layer, use alpha layer; otherwise, filter out the black background.
