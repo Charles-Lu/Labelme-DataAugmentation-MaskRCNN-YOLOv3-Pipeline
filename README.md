@@ -66,15 +66,11 @@ Example:
 augmentation/0_0.jpg  # 0th augmented image
 augmentation/0_1.jpg  # 1th augmented image
 ...
-# mask of 0th class of 0th image
-augmentation/1_0.png
-# mask of 0th class of 1th image
-augmentation/1_1.png
+augmentation/1_0.png  # mask of 0th class of 0th image
+augmentation/1_1.png  # mask of 0th class of 1th image
 ...
-# mask of 1th class of 0th image
-augmentation/2_0.png
-# mask of 1th class of 1th image
-augmentation/2_1.png
+augmentation/2_0.png  # mask of 1th class of 0th image
+augmentation/2_1.png  # mask of 1th class of 1th image
 ...
 ```
 
