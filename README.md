@@ -22,7 +22,7 @@ The pipeline will first create binary mask png for each class in each image. The
 We will go through the whole pipeline with a very small dataset of 7 images and 5 classes.
 
 ### Generate Label
-Use [Labelme](https://github.com/wkentaro/labelme/) libarary to generate annotated json file for each sample image. Please use only polygon or circle to create the mask.
+Use [Labelme](https://github.com/wkentaro/labelme/) libarary to generate annotated json file for each sample image. Please use only polygon or circle to create the mask.  
 <img src="examples/labelme.png" width="300">  
 
 ### Create PNG mask
