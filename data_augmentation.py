@@ -175,7 +175,7 @@ for i in range(begin//batch, count//batch):
 
         # save image and corresponding masks
         cv2.imwrite(os.path.join(out_dir, str(0) + "_" + str(i*batch+j)) + ".jpg", outImage)
-        for index in range(1, len(mask_list)):
+        for index in range(1, len(mask_list) + 1):
             path = os.path.join(out_dir, str(index) + "_" + str(i*batch+j) + ".png")
             cv2.imwrite(path, augmented_images[j][index])
 
