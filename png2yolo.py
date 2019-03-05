@@ -9,7 +9,7 @@ extension = "*.png"
 num_class = 5
 
 images = natsorted(glob.glob(os.path.join(dataset_dir, "*.jpg")))
-overall_list = [images]
+overall_list = []
 for mask_index in range(1, num_class + 1):
     mask_name = os.path.join(dataset_dir, str(mask_index) + extension)
     masks = natsorted(glob.glob(mask_name))
