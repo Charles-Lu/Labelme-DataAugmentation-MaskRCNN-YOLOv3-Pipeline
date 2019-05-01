@@ -49,7 +49,7 @@ IMPORTANT: This scripts use nature sort to align image and corresponding masks; 
 The script runs in following steps:  
 
 1. Load image and masks.
-2. Load background images.
+2. Load background images. Note that I've only tested augmentation where background and image are of same size (w, h). Difference in size may lead to bugs in alpha blending.
 3. Define [augmentor](https://augmentor.readthedocs.io/en/master/). The current one includes rotation, shear, perspective transformation, saturation, brightness, random removal, flip, zoom, and distortion.
 4. Sample a batch with augmentor.
 5. Choose a random background and lower its brightness (since my model will be used in low-light condition).
